@@ -6,7 +6,7 @@
 <title>LINE 官方圖文選單 GPT 設計產生器</title>
 <style>
 :root{--bg:#f5f8f7;--card:#fff;--ink:#263b39;--muted:#6f7f7c;--line:#dce8e4;--accent:#5d9d92;--accent2:#e9f4f1;--dark:#24423e}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#f7faf9,#eef5f2);color:var(--ink);font-family:"Microsoft JhengHei","Noto Sans TC",Arial,sans-serif}.wrap{max-width:960px;margin:auto;padding:28px 18px 50px}.hero{background:linear-gradient(135deg,#ffffff,#edf7f4);border:1px solid var(--line);border-radius:26px;padding:28px 30px;margin-bottom:16px;box-shadow:0 10px 30px rgba(39,72,67,.06)}.tag{display:inline-block;background:#dcefeb;color:#39756b;padding:7px 13px;border-radius:999px;font-weight:700;font-size:15px}.hero h1{font-size:32px;line-height:1.35;margin:14px 0 8px}.hero p{font-size:18px;line-height:1.7;margin:0;color:var(--muted)}.notice{margin-top:16px;padding:13px 16px;border-radius:14px;background:#fff8e8;color:#755d32;font-size:16px;line-height:1.6}.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;margin:14px 0;box-shadow:0 8px 24px rgba(39,72,67,.045)}h2{font-size:22px;margin:0 0 16px}.sub{color:var(--muted);font-size:15px;margin:-8px 0 16px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field label{display:block;font-weight:700;font-size:16px;margin-bottom:6px}input,select{width:100%;padding:14px 15px;border:1px solid #cfded9;border-radius:13px;background:#fff;font-size:16px;color:var(--ink);outline:none}input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px #e5f2ef}.chips{display:flex;gap:9px;flex-wrap:wrap}.chip,button{border:0;border-radius:12px;padding:12px 16px;cursor:pointer;font-weight:700;font-size:15px}.chip{background:#eef4f2;color:#476a64}.chip.active{background:var(--accent);color:#fff}.other{margin-top:12px}.menu-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}.menu-item{display:flex;gap:10px;align-items:center}.num{min-width:48px;text-align:center;background:var(--accent2);color:#3f756d;border-radius:11px;padding:12px 7px;font-weight:800}.menu-item input{font-size:17px;font-weight:600}.actions{display:flex;gap:10px;flex-wrap:wrap}.primary{background:var(--dark);color:white;padding:14px 20px;font-size:17px}.secondary{background:#e7f1ef;color:#315e57;padding:14px 20px;font-size:16px}.result{display:none}.result h2{margin-bottom:8px}.result-note{font-size:16px;color:var(--muted);line-height:1.6;margin:0 0 14px}.copybox{background:#1f2e2c;color:#f4fbf9;border-radius:16px;padding:20px;white-space:pre-wrap;line-height:1.8;font-size:15px;max-height:620px;overflow:auto}.success{display:none;color:#2f776b;font-weight:700;margin-top:10px}.gpt{margin-top:14px;background:#f2f7f5;border:1px solid #d8e7e2;border-radius:15px;padding:15px;display:flex;align-items:center;justify-content:space-between;gap:15px}.gpt b{font-size:17px}.gpt span{display:block;color:var(--muted);font-size:14px;margin-top:3px}.gpt a{display:inline-block;background:#111;color:#fff;text-decoration:none;border-radius:11px;padding:11px 15px;font-weight:700;white-space:nowrap}.footer{text-align:center;color:#879591;font-size:13px;margin-top:22px}@media(max-width:680px){.grid,.menu-list{grid-template-columns:1fr}.hero h1{font-size:27px}.wrap{padding:18px 12px 35px}.card{padding:18px}.gpt{align-items:flex-start;flex-direction:column}.gpt a{width:100%;text-align:center}}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#f7faf9,#eef5f2);color:var(--ink);font-family:"Microsoft JhengHei","Noto Sans TC",Arial,sans-serif}.wrap{max-width:1080px;margin:auto;padding:28px 18px 50px}.hero{background:linear-gradient(135deg,#fff,#edf7f4);border:1px solid var(--line);border-radius:26px;padding:28px 30px;margin-bottom:16px;box-shadow:0 10px 30px rgba(39,72,67,.06)}.tag{display:inline-block;background:#dcefeb;color:#39756b;padding:7px 13px;border-radius:999px;font-weight:700;font-size:15px}.hero h1{font-size:32px;line-height:1.35;margin:14px 0 8px}.hero p{font-size:18px;line-height:1.7;margin:0;color:var(--muted)}.notice{margin-top:16px;padding:13px 16px;border-radius:14px;background:#fff8e8;color:#755d32;font-size:16px;line-height:1.6}.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;margin:14px 0;box-shadow:0 8px 24px rgba(39,72,67,.045)}h2{font-size:22px;margin:0 0 16px}.sub{color:var(--muted);font-size:15px;margin:-8px 0 16px;line-height:1.7}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field label{display:block;font-weight:700;font-size:16px;margin-bottom:6px}input,select{width:100%;padding:14px 15px;border:1px solid #cfded9;border-radius:13px;background:#fff;font-size:16px;color:var(--ink);outline:none}input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px #e5f2ef}.chips{display:flex;gap:9px;flex-wrap:wrap}.chip,button{border:0;border-radius:12px;padding:12px 16px;cursor:pointer;font-weight:700;font-size:15px}.chip{background:#eef4f2;color:#476a64}.chip.active{background:var(--accent);color:#fff}.template-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.template-card{border:2px solid #dbe6e2;border-radius:16px;padding:12px;background:#fff;cursor:pointer;transition:.15s}.template-card:hover{border-color:#9cc6bd}.template-card.active{border-color:#35b94a;box-shadow:0 0 0 3px #e7f8e9;background:#fbfffb}.template-name{font-weight:800;font-size:16px;margin-top:9px}.template-desc{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.5}.preview{width:100%;aspect-ratio:2500/1686;background:#eef0f2;border:2px solid #aeb4b8;display:grid;gap:2px;padding:2px;overflow:hidden}.preview span{background:#e8eaec;border:1px solid #b8bdc1}.t6{grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr)}.t4{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr)}.t13{grid-template-columns:repeat(3,1fr);grid-template-rows:1.45fr 1fr}.t13 span:first-child{grid-column:1/4}.t3v{grid-template-columns:2fr 1fr;grid-template-rows:repeat(2,1fr)}.t3v span:first-child{grid-row:1/3}.t2h{grid-template-columns:1fr;grid-template-rows:repeat(2,1fr)}.t2v{grid-template-columns:repeat(2,1fr);grid-template-rows:1fr}.t1{grid-template-columns:1fr;grid-template-rows:1fr}.template-note{margin-top:14px;padding:13px 15px;background:#f1f7f5;border-radius:13px;font-size:15px;line-height:1.7}.menu-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}.menu-item{display:flex;gap:10px;align-items:center}.num{min-width:48px;text-align:center;background:var(--accent2);color:#3f756d;border-radius:11px;padding:12px 7px;font-weight:800}.menu-item input{font-size:17px;font-weight:600}.actions{display:flex;gap:10px;flex-wrap:wrap}.primary{background:var(--dark);color:white;padding:14px 20px;font-size:17px}.secondary{background:#e7f1ef;color:#315e57;padding:14px 20px;font-size:16px}.result{display:none}.result h2{margin-bottom:8px}.result-note{font-size:16px;color:var(--muted);line-height:1.6;margin:0 0 14px}.copybox{background:#1f2e2c;color:#f4fbf9;border-radius:16px;padding:20px;white-space:pre-wrap;line-height:1.8;font-size:15px;max-height:620px;overflow:auto}.success{display:none;color:#2f776b;font-weight:700;margin-top:10px}.gpt{margin-top:14px;background:#f2f7f5;border:1px solid #d8e7e2;border-radius:15px;padding:15px;display:flex;align-items:center;justify-content:space-between;gap:15px}.gpt b{font-size:17px}.gpt span{display:block;color:var(--muted);font-size:14px;margin-top:3px}.gpt a{display:inline-block;background:#111;color:#fff;text-decoration:none;border-radius:11px;padding:11px 15px;font-weight:700;white-space:nowrap}.footer{text-align:center;color:#879591;font-size:13px;margin-top:22px}@media(max-width:900px){.template-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:680px){.grid,.menu-list{grid-template-columns:1fr}.template-grid{grid-template-columns:1fr 1fr}.hero h1{font-size:27px}.wrap{padding:18px 12px 35px}.card{padding:18px}.gpt{align-items:flex-start;flex-direction:column}.gpt a{width:100%;text-align:center}}@media(max-width:430px){.template-grid{grid-template-columns:1fr}.hero h1{font-size:25px}}
 </style>
 </head>
 <body>
@@ -14,12 +14,19 @@
 <section class="hero">
 <span class="tag">教學工具｜GPT 圖像生成</span>
 <h1>LINE 官方圖文選單<br>橫式設計指令產生器</h1>
-<p>填寫你的品牌資料與 1～3 個功能，產生一份可以直接交給 GPT 生成圖片的完整指令。</p>
-<div class="notice">📐 本工具以 LINE 官方帳號「大型圖文選單」規格為基準：<b>2500 × 1686 px</b>。版面固定為橫式，下方功能區最多 3 格。</div>
+<p>先選擇 LINE 大型圖文選單版型，再填寫品牌資料與功能，產生可以直接交給 GPT 生成圖片的完整指令。</p>
+<div class="notice">📐 依 LINE 官方大型圖文選單常見版型設計：<b>2500 × 1686 px</b>。共提供 7 種版型，學員可依自己的功能數量與內容自行選擇。citeturn0view0</div>
 </section>
 
 <section class="card">
-<h2>① 品牌資料</h2>
+<h2>① 選擇你的圖文選單版型</h2>
+<p class="sub">請先看預覽圖，再選擇最適合你的版型。這 7 種就是大型圖文選單常見的配置：6 格、4 格、上 1 下 3、左 1 右 2、上下 2、左右 2、1 格。citeturn0view0</p>
+<div class="template-grid" id="templates"></div>
+<div class="template-note" id="templateNote"></div>
+</section>
+
+<section class="card">
+<h2>② 品牌資料</h2>
 <div class="grid">
 <div class="field"><label>品牌／店家名稱</label><input id="brand" placeholder="例如：昱見"></div>
 <div class="field"><label>行業／服務</label><input id="industryText" placeholder="例如：教育／講師"></div>
@@ -31,7 +38,7 @@
 </section>
 
 <section class="card">
-<h2>② 選擇你的行業方向</h2>
+<h2>③ 選擇你的行業方向</h2>
 <p class="sub">點選後會提供適合的功能範例，你也可以自行修改。</p>
 <div class="chips" id="chips">
 <button class="chip" data-v="教育／講師">👩‍🏫 教育／講師</button>
@@ -45,9 +52,8 @@
 </section>
 
 <section class="card">
-<h2>③ 下方功能最多 3 格</h2>
-<p class="sub">LINE 大型圖文選單可以有不同版型；本教學工具特別鎖定「下方最多三格」的橫式配置，讓手機閱讀更清楚。</p>
-<div class="field" style="max-width:280px;margin-bottom:15px"><label>功能格數</label><select id="count"><option value="1">1 格</option><option value="2">2 格</option><option value="3" selected>3 格</option></select></div>
+<h2>④ 填寫選單功能</h2>
+<p class="sub">依照你剛才選擇的版型，填寫每一個區塊要呈現的功能。大型版型最多 6 個功能區。</p>
 <div class="menu-list" id="menus"></div>
 </section>
 
@@ -56,37 +62,50 @@
 </section>
 
 <section class="card result" id="result">
-<h2>④ 完成！這份指令是給 GPT 的</h2>
+<h2>⑤ 完成！這份指令是給 GPT 的</h2>
 <p class="result-note">複製後貼到 ChatGPT，請 GPT 直接生成圖片。<b>不使用 Canva AI。</b></p>
 <pre class="copybox" id="out"></pre>
 <div class="actions" style="margin-top:12px"><button class="primary" onclick="copyIt()">📋 一鍵複製 GPT 指令</button></div>
 <div class="success" id="msg">✓ 已複製，可以貼到 GPT 了！</div>
 <div class="gpt"><div><b>下一步：開啟 ChatGPT</b><span>把剛剛複製的指令貼上，就可以直接生成圖文選單。</span></div><a href="https://chatgpt.com/" target="_blank" rel="noopener">開啟 GPT ↗</a></div>
 </section>
-<div class="footer">LINE 官方圖文選單教學工具｜大型橫式 2500 × 1686 px｜下方最多 3 格</div>
+<div class="footer">LINE 官方圖文選單教學工具｜大型橫式 2500 × 1686 px｜7 種版型可選</div>
 </div>
 <script>
+const templates=[
+{id:'t6',cls:'t6',name:'6 格均分',desc:'上下兩排 × 每排 3 格',zones:6},
+{id:'t4',cls:'t4',name:'4 格均分',desc:'左右兩欄 × 上下兩排',zones:4},
+{id:'t13',cls:'t13',name:'上 1 下 3',desc:'上方主視覺＋下方 3 格',zones:4},
+{id:'t3v',cls:'t3v',name:'左 1 右 2',desc:'左側大區＋右側上下 2 格',zones:3},
+{id:'t2h',cls:'t2h',name:'上下 2 格',desc:'上下一大一小或平均配置',zones:2},
+{id:'t2v',cls:'t2v',name:'左右 2 格',desc:'左右各 1 格',zones:2},
+{id:'t1',cls:'t1',name:'全版 1 格',desc:'整張圖片作為單一選單區',zones:1}
+];
 const samples={
-"教育／講師":["關於我","課程介紹","課程報名"],
-"美容／身心":["服務項目","預約諮詢","優惠活動"],
-"餐飲／食品":["菜單／服務","線上訂購","最新優惠"],
-"零售／電商":["商品介紹","最新優惠","會員／客服"],
-"專業服務":["關於我","服務項目","預約諮詢"],
-"個人品牌":["關於我","我的服務","聯絡／預約"],
-"其他":["關於我","服務介紹","聯絡我們"]};
-let industry='其他';
+"教育／講師":["關於我","課程介紹","課程報名","目前課表","學員專區","聯絡我"],
+"美容／身心":["服務項目","預約諮詢","優惠活動","作品集","課程介紹","聯絡我"],
+"餐飲／食品":["菜單／服務","線上訂購","最新優惠","門市資訊","會員專區","聯絡我們"],
+"零售／電商":["商品介紹","最新優惠","會員／客服","購物專區","品牌故事","聯絡我們"],
+"專業服務":["關於我","服務項目","預約諮詢","案例分享","方案介紹","聯絡我"],
+"個人品牌":["關於我","我的服務","聯絡／預約","內容專區","活動課程","會員專區"],
+"其他":["關於我","服務介紹","聯絡我們","最新消息","會員專區","預約諮詢"]};
+let industry='其他',selected='t6';
 const $=id=>document.getElementById(id);
-function render(){const n=+$('count').value,a=samples[industry]||samples.其他;$('menus').innerHTML='';for(let i=0;i<n;i++)$('menus').innerHTML+=`<div class="menu-item"><div class="num">${i+1}</div><input class="mi" value="${a[i]||''}" placeholder="例如：功能名稱"></div>`}
-document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');industry=b.dataset.v;render();$('industryText').value=industry});
-$('count').onchange=render;
+function renderTemplates(){
+$('templates').innerHTML=templates.map(t=>`<div class="template-card ${t.id===selected?'active':''}" data-id="${t.id}"><div class="preview ${t.cls}">${Array.from({length:t.zones},()=>'<span></span>').join('')}</div><div class="template-name">${t.name}</div><div class="template-desc">${t.desc}</div></div>`).join('');
+document.querySelectorAll('.template-card').forEach(c=>c.onclick=()=>{selected=c.dataset.id;renderTemplates();renderMenus();updateTemplateNote()});
+}
+function updateTemplateNote(){const t=templates.find(x=>x.id===selected);$('templateNote').innerHTML=`目前選擇：<b>${t.name}</b>｜${t.desc}<br>需要填寫的功能數：<b>${t.zones} 個</b>。工具會把你選擇的版型完整寫進 GPT 指令，不會自行改成其他版型。`}
+function renderMenus(){const t=templates.find(x=>x.id===selected),a=samples[industry]||samples.其他;$('menus').innerHTML=Array.from({length:t.zones},(_,i)=>`<div class="menu-item"><div class="num">${i+1}</div><input class="mi" value="${a[i]||''}" placeholder="第 ${i+1} 格功能，例如：關於我"></div>`).join('')}
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');industry=b.dataset.v;renderMenus();$('industryText').value=industry});
 function generate(){
-const brand=$('brand').value||'＿＿＿＿＿＿',industryText=$('industryText').value||industry||'＿＿＿＿＿＿',audience=$('audience').value||'＿＿＿＿＿＿',colors=$('colors').value||'＿＿＿＿＿＿',style=$('style').value||'＿＿＿＿＿＿',feeling=$('feeling').value||'＿＿＿＿＿＿';
-const ms=[...document.querySelectorAll('.mi')].map(x=>x.value.trim()).filter(Boolean);
-$('out').textContent=`請直接使用 GPT 的圖像生成能力，生成一張可用於「LINE 官方帳號大型圖文選單」的完整圖片。不要使用 Canva AI，也不要只提供文字或設計建議，請直接生成圖片。\n\n【一、尺寸與版型】\n・尺寸：2500 × 1686 px\n・橫式、寬幅構圖，絕對不要做成直式海報、正方形或手機直式圖片。\n・符合 LINE 官方帳號大型圖文選單使用情境。\n・整體畫面要有清楚的上方品牌視覺區，以及下方功能按鈕區。\n・下方功能區最多 ${ms.length} 格，採水平排列，平均分配寬度；不要增加第 4 格以上。\n\n【二、品牌資料】\n品牌／店家名稱：${brand}\n行業／服務：${industryText}\n目標客戶：${audience}\n品牌風格：${style}\n主要色系：${colors}\n希望呈現的感覺：${feeling}\n\n【三、下方功能按鈕】\n${ms.map((x,i)=>`${i+1}. ${x}`).join('\n')}\n\n【四、版面配置】\n・上方約 65～70%：以品牌名稱、品牌識別、主視覺或與行業相關的精緻圖像為主，建立專業品牌形象。\n・下方約 30～35%：放置 ${ms.length} 個功能區，橫向排列、大小一致、邊界清楚。\n・功能名稱使用繁體中文。\n・下方功能文字必須明顯放大、加粗，不能使用過小的輔助字；即使在手機畫面也要清楚辨識。\n・每個功能區可搭配簡潔、符合功能的圖示，但不要過度裝飾。\n・保留適當留白，避免資訊擁擠。\n・重要文字不要貼近邊緣，避免 LINE 顯示時被裁切。\n\n【五、視覺設計】\n請依照「${industryText}」與「${style}」設計專屬視覺，不要套用制式模板。整體要呈現「${feeling}」，色彩以「${colors}」為主。\n・專業、清楚、有品牌辨識度。\n・避免過度可愛、過度花俏或廉價模板感。\n・文字層級清楚：品牌名稱最大，其次為主要資訊，功能按鈕文字要大而醒目。\n・繁體中文，字體清楚、穩定、易讀。\n・不要加入與品牌無關的英文裝飾文字。\n\n【六、最終要求】\n請直接生成「完整的 2500 × 1686 px 橫式 LINE 大型圖文選單圖片」，不是網頁截圖、不是設計稿說明、不是 Canva 操作教學。請確保下方最多 ${ms.length} 格、功能文字夠大、整體適合實際上傳至 LINE 官方帳號。`;
+const t=templates.find(x=>x.id===selected),brand=$('brand').value||'＿＿＿＿＿＿',industryText=$('industryText').value||industry||'＿＿＿＿＿＿',audience=$('audience').value||'＿＿＿＿＿＿',colors=$('colors').value||'＿＿＿＿＿＿',style=$('style').value||'＿＿＿＿＿＿',feeling=$('feeling').value||'＿＿＿＿＿＿';
+const ms=[...document.querySelectorAll('.mi')].map(x=>x.value.trim());
+$('out').textContent=`請直接使用 GPT 的圖像生成能力，生成一張可用於「LINE 官方帳號大型圖文選單」的完整圖片。不要使用 Canva AI，也不要只提供文字或設計建議，請直接生成圖片。\n\n【一、尺寸】\n・2500 × 1686 px\n・橫式、寬幅構圖。絕對不要做成直式海報、正方形或手機直式圖片。\n・圖片格式以 LINE 官方圖文選單可使用的 JPG、JPEG 或 PNG 為目標，並注意檔案容量控制。\n\n【二、我選擇的官方大型圖文選單版型】\n版型：${t.name}\n版型結構：${t.desc}\n功能區數量：${t.zones} 格\n\n請嚴格依照上述版型配置，區塊位置不可自行更換、不可增加或減少。每一個區塊都要有清楚的視覺邊界與可辨識的功能。\n\n【三、品牌資料】\n品牌／店家名稱：${brand}\n行業／服務：${industryText}\n目標客戶：${audience}\n品牌風格：${style}\n主要色系：${colors}\n希望呈現的感覺：${feeling}\n\n【四、各功能區文字】\n${ms.map((x,i)=>`${i+1}. ${x||'＿＿＿＿＿＿'}`).join('\n')}\n\n【五、版面配置要求】\n・完整套用「${t.name}」版型，不得改成其他模板。\n・所有功能文字使用繁體中文。\n・功能文字要明顯放大、加粗、清楚易讀，手機畫面也能快速辨識。\n・功能文字不要縮成很小的輔助字。\n・每個功能區可以使用 1 個簡潔圖示或符合功能的視覺元素，但不要過度裝飾。\n・保留適當留白，避免資訊擁擠。\n・重要文字與圖示不要貼近邊緣，避免實際上傳 LINE 後被裁切。\n・不要加入無關的英文、假字、亂碼或裝飾性文字。\n\n【六、品牌視覺】\n請依照「${industryText}」與「${style}」設計，不要套用制式模板。整體要呈現「${feeling}」，色彩以「${colors}」為主。\n・專業、清楚、有品牌辨識度。\n・畫面乾淨、有層次、有留白。\n・主視覺與功能區要有清楚的視覺層級。\n・不要做成一般社群貼文、海報、簡報或網頁介面。\n\n【七、最終輸出】\n請直接生成完整的「2500 × 1686 px 橫式 LINE 官方帳號大型圖文選單圖片」。\n請嚴格維持我選擇的「${t.name}」版型與 ${t.zones} 個功能區，並讓繁體中文功能文字大而清楚。不要使用 Canva AI。`;
 $('result').style.display='block';$('result').scrollIntoView({behavior:'smooth'})}
 function copyIt(){navigator.clipboard.writeText($('out').textContent).then(()=>{$('msg').style.display='block'})}
-function example(){$('brand').value='昱見';$('industryText').value='教育／講師';$('audience').value='想學營養命理的人';$('colors').value='淡藍綠、米白';$('style').value='專業、知性、簡約';$('feeling').value='值得信賴、沉穩、清楚';industry='教育／講師';document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x.dataset.v===industry));$('count').value='3';render()}
-render();
+function example(){$('brand').value='昱見';$('industryText').value='教育／講師';$('audience').value='想學營養命理的人';$('colors').value='淡藍綠、米白';$('style').value='專業、知性、簡約';$('feeling').value='值得信賴、沉穩、清楚';industry='教育／講師';document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x.dataset.v===industry));selected='t13';renderTemplates();renderMenus();updateTemplateNote()}
+renderTemplates();renderMenus();updateTemplateNote();
 </script>
 </body>
 </html>
