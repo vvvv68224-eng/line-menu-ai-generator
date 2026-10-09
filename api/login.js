@@ -7,7 +7,7 @@ if(email===String(process.env.ADMIN_EMAIL||'').toLowerCase()&&process.env.ADMIN_
 const exists=await sql`SELECT id FROM wanglin_users WHERE email=${email}`;
 if(!exists.length){const h=hash(process.env.ADMIN_INITIAL_PASSWORD);await sql`INSERT INTO wanglin_users(email,password_hash,role) VALUES(${email},${h},'admin') ON CONFLICT(email) DO NOTHING`}}
 const rows=await sql`SELECT * FROM wanglin_users WHERE email=${email}`,u=rows[0];
-if(!u)return json(res,401,{error:'此 Email 尚未開通，請聯絡管理員'});if(u.role==='admin'&&!check(password,u.password_hash))return json(res,401,{error:'管理員密碼錯誤'});
+if(!u||u.role!=='admin')return json(res,401,{error:'學員請使用管理員提供的專屬連結'});if(!check(password,u.password_hash))return json(res,401,{error:'管理員密碼錯誤'});
 if(u.disabled)return json(res,403,{error:'帳號已停用'});
 if(u.role!=='admin'){if(u.expires_at&&new Date(u.expires_at).getTime()<=Date.now())return json(res,403,{error:'使用期限已到期'});
 if(!u.first_login_at){const updated=await sql`UPDATE wanglin_users SET first_login_at=NOW(),expires_at=NOW()+duration_days*INTERVAL '1 day' WHERE id=${u.id} AND first_login_at IS NULL RETURNING *`;if(updated.length)Object.assign(u,updated[0])}}
