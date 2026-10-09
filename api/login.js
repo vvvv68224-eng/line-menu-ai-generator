@@ -1,7 +1,7 @@
 const {sql,init,hash,check,token,json,method}=require('./_auth');
 module.exports=async(req,res)=>{if(!method(req,res,['POST']))return;try{
 const email=String(req.body?.email||'').trim().toLowerCase(),password=String(req.body?.password||'');
-if(!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)||password.length>256)return json(res,400,{error:'請輸入正確 Email'});
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)||password.length>256)return json(res,400,{error:'請輸入正確 Email'});
 await init();
 if(email===String(process.env.ADMIN_EMAIL||'').toLowerCase()&&process.env.ADMIN_INITIAL_PASSWORD){
 const exists=await sql`SELECT id FROM wanglin_users WHERE email=${email}`;
