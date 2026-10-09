@@ -1,7 +1,5 @@
 const {current}=require('./_auth');
 module.exports=async(req,res)=>{try{const u=await current(req);if(!u){res.statusCode=302;res.setHeader('Location','/');return res.end()}let html=require('./_site-data');
-if(u.role!=='admin'){html=html.replace(/<section class="card result" id="result">[\s\S]*?<\/section>/,'').replace(/<button class="btn primary" onclick="generate\(\)">[\s\S]*?<\/button>/,'').replace(/<div class="note"><b>使用流程：[\s\S]*?<\/div>/,'').replace(/<div class="footer">/,'<div class="footer">');html=html.replace(/function generate\(\)\{[\s\S]*?function copyIt\(\)/,'function generate(){}\nfunction copyIt()')}
-
 const ipadEnhancement=`<style>
 /* iPad friendly: restrained cream interface and larger touch targets */
 :root{--ink:#45443f;--muted:#74716a;--line:#e7e3db;--main:#777369;--soft:#f4f1e9}
