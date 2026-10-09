@@ -1,10 +1,5 @@
 {
   "version": 2,
-  "functions": {
-    "api/tool.js": {
-      "includeFiles": "api/_site.html"
-    }
-  },
   "rewrites": [
     {
       "source": "/tool",
