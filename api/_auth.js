@@ -1,0 +1,12 @@
+const crypto=require('node:crypto');const {neon}=require('@neondatabase/serverless');
+const sql=neon(process.env.DATABASE_URL||process.env.POSTGRES_URL);
+let initialized=false;
+async function init(){if(initialized)return;await sql`CREATE TABLE IF NOT EXISTS wanglin_users (id BIGSERIAL PRIMARY KEY,email TEXT NOT NULL UNIQUE, password_hash TEXT NOT NULL,role TEXT NOT NULL DEFAULT 'student',duration_days INTEGER NOT NULL DEFAULT 7,first_login_at TIMESTAMPTZ,expires_at TIMESTAMPTZ,disabled BOOLEAN NOT NULL DEFAULT FALSE,created_at TIMESTAMPTZ NOT NULL DEFAULT NOW())`;initialized=true}
+function hash(password,salt=crypto.randomBytes(16).toString('hex')){return salt+':'+crypto.scryptSync(password,salt,64).toString('hex')}
+function check(password,stored){try{const [salt,expected]=stored.split(':');const actual=crypto.scryptSync(password,salt,64);return crypto.timingSafeEqual(actual,Buffer.from(expected,'hex'))}catch{return false}}
+function token(user){const exp=Date.now()+12*60*60*1000;const data=Buffer.from(JSON.stringify({id:String(user.id),exp})).toString('base64url');const sig=crypto.createHmac('sha256',process.env.SESSION_SECRET).update(data).digest('base64url');return data+'.'+sig}
+function readCookie(req){const m=(req.headers.cookie||'').match(/(?:^|; )wl_session=([^;]+)/);if(!m)return null;const [data,sig]=m[1].split('.');if(!data||!sig||!process.env.SESSION_SECRET)return null;const good=crypto.createHmac('sha256',process.env.SESSION_SECRET).update(data).digest('base64url');if(sig.length!==good.length||!crypto.timingSafeEqual(Buffer.from(sig),Buffer.from(good)))return null;try{const v=JSON.parse(Buffer.from(data,'base64url').toString());return v.exp>Date.now()?v:null}catch{return null}}
+async function current(req){const t=readCookie(req);if(!t)return null;await init();const rows=await sql`SELECT id,email,role,duration_days,first_login_at,expires_at,disabled FROM wanglin_users WHERE id=${t.id}`;const u=rows[0];if(!u||u.disabled||(u.role!=='admin'&&(!u.expires_at||new Date(u.expires_at).getTime()<=Date.now())))return null;return u}
+function json(res,status,obj){res.status(status).setHeader('Cache-Control','no-store').json(obj)}
+function method(req,res,allowed){if(!allowed.includes(req.method)){json(res,405,{error:'不支援此操作'});return false}return true}
+module.exports={sql,init,hash,check,token,current,json,method};
