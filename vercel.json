@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "functions": {
+    "api/tool.js": {
+      "includeFiles": "api/_site.html"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/tool",
+      "destination": "/api/tool"
+    },
+    {
+      "source": "/admin",
+      "destination": "/api/admin-page"
+    }
+  ]
+}
